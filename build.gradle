@@ -1,0 +1,25 @@
+apply plugin: 'eclipse'
+apply plugin: 'scala'
+apply plugin: 'maven'
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+	provided
+}
+
+sourceSets {
+	main { compileClasspath += configurations.provided }
+	test { runtimeClasspath += configurations.provided }
+}
+
+eclipse.classpath.plusConfigurations += configurations.provided
+
+scalaVersion = '2.9.1-1'
+
+dependencies {
+	compile 'org.scala-lang:scala-library:' + scalaVersion
+	testCompile 'org.specs2:specs2_2.9.1:1.8.1'
+}
